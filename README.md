@@ -1,10 +1,11 @@
 # [JSL02] Submission: Debug the DOM
 
-You will: 
-1. Use the Starter Code Repo, 
+You will:
+
+1. Use the Starter Code Repo,
 2. Code your solution,
 3. Commit changes to your repo
-3. Submit GitHub Repo Link to LMS [JSL02] Submission Project Tab
+4. Submit GitHub Repo Link to LMS [JSL02] Submission Project Tab
 
 # Debugging Duplicate Goals
 
@@ -22,9 +23,40 @@ In the current code, users can add the same fitness goal multiple times, leading
 - Focus on the code structure within the function and how to handle duplicates.
 
 **Explanation:**
+
 1. We first retrieve all the existing goals in the `goalList` using `querySelectorAll`.
 2. Then, we iterate through each existing goal and compare its text content with the new goal input.
 3. If a duplicate is found, we display an alert message and exit the function using `return` to prevent the duplicate goal from being added.
 4. If no duplicate is found, we proceed to create and add the new goal as before.
 
 Check out the practice challenges on Scrimba here: https://scrimba.com/playlist/pwVxGLDUW
+
+const addNewGoal = () => {
+const goalInput = document.querySelector("#goalInput");
+const goalList = document.querySelector('#goalList');
+const goalListItems = document.querySelector("#goalList").querySelectorAll('li');
+
+const goalInputNew = goalInput.value.trim();
+
+let duplicate = false;
+
+for (let i = 0; i < goalListItems.length; i++) {
+if (goalListItems[i].textContent.trim() === goalInputNew) {
+duplicate = true;
+//break; // Exit the loop early if a duplicate is found
+}
+}
+
+if (duplicate) {
+alert("This goal has already been added!!!");
+goalInput.value = "";
+console.log("Duplicate found");
+} else {
+const newGoal = document.createElement("li");
+newGoal.textContent = goalInputNew;
+goalList.appendChild(newGoal);
+goalInput.value = "";
+}
+};
+
+document.querySelector("#submitGoal").addEventListener("click", addNewGoal);
