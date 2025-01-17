@@ -47,6 +47,7 @@ const addNewGoal = () => {
     //if duplicate is true
     goalInput.value = ""; //input will clear automatically.
     alert("This goal has already been added!!!"); //alert displayed if there is a duplicate
+    return;
     //console.log(alert);
   } else {
     //if there is no duplicate, code runs to create a li element with the new goal input as the text. This is appended to the ul element as the last child.
