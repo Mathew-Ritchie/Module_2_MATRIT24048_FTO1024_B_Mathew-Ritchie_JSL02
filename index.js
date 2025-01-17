@@ -22,37 +22,44 @@ document
 // Function to add new fitness goals and remove completed ones
 // NOW LET'S DEBUG TO PREVENT DUPLICATE GOALS FROM BEING SUBMITTED 🚀
 
+//JSL02 - start////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 const addNewGoal = () => {
   const goalInput = document.querySelector("#goalInput");
   const goalList = document.querySelector("#goalList");
-  console.log(goalInput, goalList);
-  const goalInputNew = goalInput.value.trim(); // declaring a variuable thats targeting the actual value of the goal in the input field
-  console.log(goalInputNew);
-  let duplicate = false; //declaring a variable and giving it a value
+  //console.log(goalInput, goalList);
+  const goalInputNew = goalInput.value.trim(); // declaring a variuable thats targeting the actual value of the goal
+  // in the input field and not the actual html element. trim() is used
+  //to cut away any white space before or after the input value.
+  //console.log(goalInputNew);
+  let duplicate = false; //declaring a duplicate variable and giving it a boolean value of false.
 
   for (let i = 0; i < goalList.children.length; i++) {
-    // this is a loop in which the function will loop through the already added goals (children) which are in the goalList
+    // this is a loop in which the function will loop through the already added goals (children) which are in the goalList element.
     if (goalList.children[i].textContent.trim() === goalInputNew) {
-      //if statement saying that if the new input goal is equal to ant of those in the list of children then the statment is true.
+      //if statement saying that if the text content of any of the goal list children is equal to the new input value, then the duplicate variable will have the value of true.
       duplicate = true;
-      console.log(duplicate);
+      //console.log(duplicate);
     }
   }
 
   if (duplicate) {
-    alert("This goal has already been added!!!"); //this is the alert that will be displayed if there is a duplicate
-    console.log(alert);
+    //if duplicate is true
+    goalInput.value = ""; //input will clear automatically.
+    alert("This goal has already been added!!!"); //alert displayed if there is a duplicate
+    //console.log(alert);
   } else {
-    //if there is no duplicate, code runs to create a li element with the new goal input as the text. The is appended to the ul element.
+    //if there is no duplicate, code runs to create a li element with the new goal input as the text. This is appended to the ul element as the last child.
     const newGoal = document.createElement("li");
     newGoal.textContent = goalInputNew;
     goalList.appendChild(newGoal);
-    goalInput.value = ""; //finally the input is cleared for the next goal.
+    goalInput.value = ""; //input will clear automatically.
   }
 };
 
-document.querySelector("#submitGoal").addEventListener("click", addNewGoal); //event listener that runs function addNewGoal.
+document.querySelector("#submitGoal").addEventListener("click", addNewGoal);
 
+//JSL02 - End////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 let waterIntake = 0;
 const updateWaterIntake = (change) => {

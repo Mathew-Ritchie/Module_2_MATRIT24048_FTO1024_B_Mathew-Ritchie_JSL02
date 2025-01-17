@@ -30,33 +30,3 @@ In the current code, users can add the same fitness goal multiple times, leading
 4. If no duplicate is found, we proceed to create and add the new goal as before.
 
 Check out the practice challenges on Scrimba here: https://scrimba.com/playlist/pwVxGLDUW
-
-const addNewGoal = () => {
-const goalInput = document.querySelector("#goalInput");
-const goalList = document.querySelector('#goalList');
-const goalListItems = document.querySelector("#goalList").querySelectorAll('li');
-
-const goalInputNew = goalInput.value.trim();
-
-let duplicate = false;
-
-for (let i = 0; i < goalListItems.length; i++) {
-if (goalListItems[i].textContent.trim() === goalInputNew) {
-duplicate = true;
-//break; // Exit the loop early if a duplicate is found
-}
-}
-
-if (duplicate) {
-alert("This goal has already been added!!!");
-goalInput.value = "";
-console.log("Duplicate found");
-} else {
-const newGoal = document.createElement("li");
-newGoal.textContent = goalInputNew;
-goalList.appendChild(newGoal);
-goalInput.value = "";
-}
-};
-
-document.querySelector("#submitGoal").addEventListener("click", addNewGoal);
